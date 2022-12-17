@@ -1,8 +1,23 @@
+import { useDispatch, useSelector } from "react-redux";
 import { AddContactForm } from "./Components/AddContactForm/AddContactForm";
 import { Contacts } from "./Components/Contacts/Contacts";
 import { Search } from "./Components/Search/Search";
+import { getContacts, getError, getIsLoading } from "./redux/selectors";
+import { useEffect } from "react";
+import { fetchContacts } from "./redux/operations";
 
 function App() {
+
+  const dispatch = useDispatch();
+  const items = useSelector(getContacts);
+  const isLoading = useSelector(getIsLoading);
+  const error = useSelector(getError);
+
+
+
+  useEffect(() => {
+    dispatch(fetchContacts())
+  }, [dispatch]);
 
   return (
     <div className="App">
@@ -10,7 +25,9 @@ function App() {
       <AddContactForm />
       <h2>Contacts</h2>
       <Search />
-      <Contacts />
+      {isLoading && <p>Loading...</p>}
+      {error && <b>{error}</b>}
+      {items.length > 0 && <Contacts /> || !error && <b>Your contacts list is empty</b>}
     </div>
   );
 }

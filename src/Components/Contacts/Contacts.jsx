@@ -15,7 +15,7 @@ export const Contacts = () => {
       <ul>
         {visibleContacts.length ? visibleContacts.map(contact => {
           return (<ContactsItem contact={contact}/>)
-        }) : <h2>No matches found</h2>}
+        }) : <h2>No contacts found</h2>}
       </ul>
     </div>
   );

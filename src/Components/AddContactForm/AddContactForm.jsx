@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import { AddButton, Form, Input } from '../../AppStyled.js';
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice.js";
 import { useSelector } from "react-redux";
 import { getContacts } from "../../redux/selectors.js";
+import { addContact } from "../../redux/operations.js";
 
 
 export const AddContactForm = () => {
@@ -27,7 +27,7 @@ export const AddContactForm = () => {
       const message = `${addContactName} is already in contacts`;
       return alert(message);
     }
-    dispatch(addContact(userName, number))
+    dispatch(addContact({name: addContactName, phone: number}))
     reset();
   };
 
