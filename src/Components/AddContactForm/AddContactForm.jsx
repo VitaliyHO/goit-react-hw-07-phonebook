@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import { AddButton, Form, Input } from '../../AppStyled.js';
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { getContacts } from "../../redux/selectors.js";
+import { selectContacts } from "../../redux/selectors.js";
 import { addContact } from "../../redux/operations.js";
 
 
@@ -16,7 +16,7 @@ export const AddContactForm = () => {
   const inputPhoneId = nanoid();
 
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
 
   const handleSubmit = (event) => {
